@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Task</title>
+<link rel="stylesheet" type="text/css" href="nis.css"/>
+</head>
+<body>
+<h1>Click on button to get a quote.</h1>
+<div id="new">
+<img id="new2" src="wall.jpg">
+<p id="new1"></p>
+</div>
+<input type="button" value="submit" onclick="action()">
+<script>
+function action()
+{
+var xhttp=new XMLHttpRequest();
+xhttp.open("GET","https://api.kanye.rest/",true);
+xhttp.onload=function()
+{
+if(this.readyState==4 && this.status==200)
+{
+var text=JSON.parse(this.responseText);
+document.getElementById("new").style.width="300px";
+document.getElementById("new").style.height="450px";
+document.getElementById("new").style.backgroundColor="pink";
+document.getElementById("new").style.display="inherit";
+document.getElementById("new").style.border="5px solid red";
+//document.getElementById("new2").innerHTML.src="wall.jpg";
+document.getElementById("new1").innerHTML=text.quote;
+}
+};
+xhttp.send();
+}
+</script>
+</body>
+</html>
